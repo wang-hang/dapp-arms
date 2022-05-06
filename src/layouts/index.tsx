@@ -8,6 +8,7 @@ import ProLayout, {
   SettingDrawer,
 } from '@ant-design/pro-layout';
 import { IRouteComponentProps } from 'umi';
+import Header from '@/components/header';
 
 export default function Layout(props: IRouteComponentProps) {
   const [pathname, setPathname] = useState('/welcome');
@@ -41,6 +42,7 @@ export default function Layout(props: IRouteComponentProps) {
             {dom}
           </a>
         )}
+        headerContentRender={() => <Header></Header>}
       >
         <PageContainer>{props.children}</PageContainer>
       </ProLayout>
