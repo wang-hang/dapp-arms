@@ -20,9 +20,9 @@
     ]
   },
   "dependencies": {
-    "@ant-design/pro-layout": "^6.5.0",
-    "@web3-react/core": "^8.0.18-beta.0",
-    "@web3-react/metamask": "^8.0.0-beta.0",
+    "@ant-design/pro-layout": "^6.34.6",
+    "@web3-react/core": "^8.0.29-beta.0",
+    "@web3-react/metamask": "^8.0.24-beta.0",
     "antd": "^4.18.9",
     "ethers": "^5.5.4",
     "react": "17.x",
