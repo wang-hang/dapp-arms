@@ -42,7 +42,7 @@ export default function Layout(props: IRouteComponentProps) {
           </a>
         )}
       >
-        <PageContainer></PageContainer>
+        <PageContainer>{props.children}</PageContainer>
       </ProLayout>
     </div>
   );

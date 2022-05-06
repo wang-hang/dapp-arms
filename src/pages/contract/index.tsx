@@ -1,5 +1,10 @@
+import ApproveCard from '@/components/approve-card';
 function Contract() {
-  return <h1>Contract</h1>;
+  return (
+    <div>
+      <ApproveCard />
+    </div>
+  );
 }
 
 Contract.title = '合约';
