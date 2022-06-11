@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Descriptions, Result, Avatar, Space, Statistic } from 'antd';
 import { LikeOutlined, UserOutlined } from '@ant-design/icons';
 
@@ -9,9 +9,14 @@ import ProLayout, {
 } from '@ant-design/pro-layout';
 import { IRouteComponentProps } from 'umi';
 import Header from '@/components/header';
+import useWallet from '@/hooks/useWallet';
 
 export default function Layout(props: IRouteComponentProps) {
   const [pathname, setPathname] = useState('/welcome');
+  const { connect } = useWallet();
+  useEffect(() => {
+    connect();
+  }, []);
   const routes = [
     {
       name: '合约',
