@@ -7,4 +7,5 @@ export default defineConfig({
   fastRefresh: {},
   mfsu: {},
   esbuild: {},
+  outputPath: 'docs',
 });
