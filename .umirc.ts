@@ -6,6 +6,8 @@ export default defineConfig({
   },
   fastRefresh: {},
   mfsu: {},
+  hash: true,
   esbuild: {},
   outputPath: 'docs',
+  publicPath: 'https://wang-hang.github.io/',
 });
