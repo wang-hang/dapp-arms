@@ -9,5 +9,5 @@ export default defineConfig({
   hash: true,
   esbuild: {},
   outputPath: 'docs',
-  publicPath: 'https://wang-hang.github.io/',
+  publicPath: 'https://wang-hang.github.io/dapp-arms/',
 });
