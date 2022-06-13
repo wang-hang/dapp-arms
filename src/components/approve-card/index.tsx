@@ -56,12 +56,12 @@ export default function ApproveCard() {
         ></Input>
         <Input
           placeholder="请输入被授权的地址"
-          value={tokenAddress}
+          value={beApprovedAddress}
           onChange={(v) => setBeApprovedAddress(v.target.value)}
         ></Input>
         <Input
           placeholder="请输入授权的代币的地址"
-          value={beApprovedAddress}
+          value={tokenAddress}
           onChange={(e) => setTokenAddress(e.target.value)}
         ></Input>
       </Row>
