@@ -7,6 +7,7 @@ import { IRouteComponentProps } from 'umi';
 import Header from '@/components/header';
 import useWallet from '@/hooks/useWallet';
 import { Link } from 'umi';
+import logo from '@/assets/img/logo.png'
 
 export default function Layout(props: IRouteComponentProps) {
   const { connect } = useWallet();
@@ -34,6 +35,9 @@ export default function Layout(props: IRouteComponentProps) {
       }}
     >
       <ProLayout
+        logo={logo}
+        title="Dapp Arms"
+        navTheme="light"
         location={{
           pathname: props.location.pathname,
         }}
