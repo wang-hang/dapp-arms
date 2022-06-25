@@ -1,18 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import { Button, Descriptions, Result, Avatar, Space, Statistic } from 'antd';
-import { LikeOutlined, UserOutlined } from '@ant-design/icons';
+import  { useEffect } from 'react';
 
-import type { ProSettings } from '@ant-design/pro-layout';
 import ProLayout, {
   PageContainer,
-  SettingDrawer,
 } from '@ant-design/pro-layout';
 import { IRouteComponentProps } from 'umi';
 import Header from '@/components/header';
 import useWallet from '@/hooks/useWallet';
+import { Link } from 'umi';
 
 export default function Layout(props: IRouteComponentProps) {
-  const [pathname, setPathname] = useState('/welcome');
   const { connect } = useWallet();
   useEffect(() => {
     connect();
@@ -26,6 +22,10 @@ export default function Layout(props: IRouteComponentProps) {
       name: 'Hex',
       path: '/hex',
     },
+    {
+      name: 'ERC20',
+      path: '/erc20',
+    },
   ];
   return (
     <div
@@ -35,17 +35,11 @@ export default function Layout(props: IRouteComponentProps) {
     >
       <ProLayout
         location={{
-          pathname,
+          pathname: props.location.pathname,
         }}
         route={{ routes }}
         menuItemRender={(item, dom) => (
-          <a
-            onClick={() => {
-              setPathname(item.path || '/welcome');
-            }}
-          >
-            {dom}
-          </a>
+          <Link to={item.path}>{dom}</Link>
         )}
         headerContentRender={() => <Header></Header>}
       >

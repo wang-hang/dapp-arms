@@ -6,7 +6,6 @@ function Contract() {
     <div>
       <ApproveCard />
       <DeployERC20Card />
-      <ERC20InfoCard />
     </div>
   );
 }
