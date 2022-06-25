@@ -56,6 +56,7 @@ export async function getBalance(account: string, contract: ERC20Contract) {
 
 export default function useERC20Contract(address: string) {
   const { provider, account } = useWallet();
+  if(!provider || !address) return null
   return useMemo(
     () => makeERC20Contract(address, provider, account),
     [provider, address],
