@@ -1,4 +1,4 @@
-import { Web3Provider, JsonRpcSigner } from '@ethersproject/providers';
+import { Web3Provider } from '@ethersproject/providers';
 import ERC20ABI from '@/abi/erc20.json';
 import { BigNumber } from '@ethersproject/bignumber';
 import {
@@ -20,6 +20,9 @@ export interface ERC20Contract extends Contract {
     spenderAddress: string, // 要授权的合约的地址
   ) => Promise<BigNumber>;
   approve: (address: string, amount: string) => Promise<ContractTransaction>; // 授权
+  decimals: () => Promise<BigNumber>;
+  symbol: () => Promise<string>;
+  name: () => Promise<string>;
   transfer: (
     to: string,
     amount: string,
