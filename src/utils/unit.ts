@@ -6,8 +6,6 @@ export type BigNumberLike = string | number | BigNumber | BN;
 
 export function weiToEther(weiAmount: BigNumberLike, demicals = 18) {
   const amount = toBN(weiAmount);
-  // TODO 确认为什么传入小数时  formatUnits会报错？
-  // return new BigNumber(formatUnits(amount, demicals));
   return amount.dividedBy(Math.pow(10, demicals));
 }
 
