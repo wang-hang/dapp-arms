@@ -49,7 +49,7 @@ export default function ERC20InfoCard() {
   }
 
   function handleChange(v: string){
-    setError(utils.isAddress(v))
+    setError(!utils.isAddress(v))
     getInfo(v)
   }
 
