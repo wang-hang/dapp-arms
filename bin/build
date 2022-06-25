@@ -1,0 +1,6 @@
+#!/bin/bash
+
+npm run build
+git add docs
+git commit -m 'build: 构建'
+git push
