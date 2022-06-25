@@ -1,15 +1,12 @@
-import { useEffect, useState } from "react";
-import { Input, Card, Descriptions, Spin, Space } from "antd";
+import {  useState } from "react";
+import { Input, Card, Descriptions, Spin, Space, message } from "antd";
 import { utils, Contract } from 'ethers'
 import ERC20ABI from '@/abi/erc20.json';
 import useWallet from "@/hooks/useWallet";
-import useERC20Contract from "@/hooks/useERC20Contract";
-import { add, debounce } from 'lodash'
-import toBN from "@/utils/to-bn";
+import { debounce } from 'lodash'
 import { weiToEther } from "@/utils/unit";
 
 export default function ERC20InfoCard() {
-  const [address, setAddress] = useState('')
   const { provider, account } = useWallet();
   const [balance, setBalance] = useState('--');
   const [totalSupply, setTotalSupply] = useState('--')
@@ -43,6 +40,9 @@ export default function ERC20InfoCard() {
       setDecimals(decimals.toString())
       setName(name)
       setSymbol(symbol)
+    })
+    .catch(() => {
+      message.error('出错了~')
     })
     .finally(() => {
       setLoading(false)
