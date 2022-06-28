@@ -7,6 +7,7 @@ import { makeERC20Contract } from './useERC20Contract';
 import { MAX_HEX_NUMBER } from '@/constants';
 import BigNumber from 'bignumber.js';
 import toBN from '@/utils/to-bn';
+import { isAddress } from 'ethers/lib/utils';
 
 export default function useApprove() {
   const { account, provider } = useWallet();
@@ -46,7 +47,7 @@ export const useApproveStatus = (
   const [loading, setLoading] = useState(false);
 
   const getStatus = () => {
-    if (tokenAddress && approveAddress) {
+    if (tokenAddress && approveAddress && isAddress(approveAddress) && isAddress(tokenAddress)) {
       setLoading(true);
       const contract = makeERC20Contract(tokenAddress, provider, account);
       contract

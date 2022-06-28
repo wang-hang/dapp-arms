@@ -7,7 +7,7 @@ export default function ApproveCard() {
   const [tokenAddress, setTokenAddress] = useState('');
   const [approveValue, setApproveValue] = useState('');
   const [beApprovedAddress, setBeApprovedAddress] = useState('');
-  const { isApproved, allowance } = useApproveStatus(
+  const { isApproved, allowance, loading: getAllowanceLoading } = useApproveStatus(
     tokenAddress,
     beApprovedAddress,
   );
@@ -66,7 +66,9 @@ export default function ApproveCard() {
         ></Input>
       </Row>
       <Row>
-        <p>授权额度：{weiToEther(allowance).toString()}</p>
+        <p>
+          {getAllowanceLoading ? '查询中...' :  `授权额度：${weiToEther(allowance).toString()}`}
+        </p>
       </Row>
       <Row>
         <Button loading={approveLoading} onClick={toApprove}>
