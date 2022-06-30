@@ -8,6 +8,7 @@ import { MAX_HEX_NUMBER } from '@/constants';
 import BigNumber from 'bignumber.js';
 import toBN from '@/utils/to-bn';
 import { isAddress } from 'ethers/lib/utils';
+import { weiToEther } from '@/utils/unit';
 
 export default function useApprove() {
   const { account, provider } = useWallet();
@@ -72,7 +73,8 @@ export const useApproveStatus = (
   return {
     loading,
     isApproved,
-    allowance,
+    allowanceWei: allowance.toFixed(),
+    allowanceEther: weiToEther(allowance).toFixed(),
     refresh: getStatus,
   };
 };

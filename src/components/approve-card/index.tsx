@@ -2,12 +2,13 @@ import { useState } from 'react';
 import useApprove, { useApproveStatus } from '@/hooks/useApprove';
 import { Card, Input, Space, Button, Row, message } from 'antd';
 import { weiToEther, etherToWei } from '@/utils/unit';
+import { isAddress } from 'ethers/lib/utils';
 
 export default function ApproveCard() {
   const [tokenAddress, setTokenAddress] = useState('');
   const [approveValue, setApproveValue] = useState('');
   const [beApprovedAddress, setBeApprovedAddress] = useState('');
-  const { isApproved, allowance, loading: getAllowanceLoading } = useApproveStatus(
+  const { isApproved, allowanceEther, loading: getAllowanceLoading } = useApproveStatus(
     tokenAddress,
     beApprovedAddress,
   );
@@ -58,16 +59,18 @@ export default function ApproveCard() {
           placeholder="请输入被授权的地址"
           value={beApprovedAddress}
           onChange={(v) => setBeApprovedAddress(v.target.value)}
+          status={beApprovedAddress && isAddress(beApprovedAddress) ? undefined : 'error'}
         ></Input>
         <Input
           placeholder="请输入授权的代币的地址"
           value={tokenAddress}
           onChange={(e) => setTokenAddress(e.target.value)}
+          status={tokenAddress && isAddress(tokenAddress) ? undefined : 'error'}
         ></Input>
       </Row>
       <Row>
         <p>
-          {getAllowanceLoading ? '查询中...' :  `授权额度：${weiToEther(allowance).toString()}`}
+          {getAllowanceLoading ? '查询中...' :  `授权额度：${allowanceEther} Ether`}
         </p>
       </Row>
       <Row>
