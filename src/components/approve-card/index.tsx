@@ -74,7 +74,7 @@ export default function ApproveCard() {
         </p>
       </Row>
       <Row>
-        <Button loading={approveLoading} onClick={toApprove}>
+        <Button type="primary" loading={approveLoading} onClick={toApprove}>
           授权
         </Button>
         <Button loading={cancelApproveLoading} onClick={cancelApprove}>
