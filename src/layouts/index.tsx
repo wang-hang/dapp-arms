@@ -8,16 +8,31 @@ import Header from '@/components/header';
 import useWallet from '@/hooks/useWallet';
 import { Link } from 'umi';
 import logo from '@/assets/img/logo.png'
+import { Route } from '@ant-design/pro-layout/lib/typings';
 
 export default function Layout(props: IRouteComponentProps) {
   const { connect } = useWallet();
   useEffect(() => {
     connect();
   }, []);
-  const routes = [
+  const routes: Route[] = [
     {
       name: '合约',
       path: '/contract',
+      routes: [
+        {
+          name: '代币授权',
+          path: '/contract/approve'
+        },
+        {
+          name: '发行ERC20代币',
+          path: '/contract/deploy-erc20'
+        },
+        {
+          name: '合约调用',
+          path: '/contract/call'
+        },
+      ]
     },
     {
       name: 'Hex',
