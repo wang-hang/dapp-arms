@@ -56,6 +56,7 @@ export default function Layout(props: IRouteComponentProps) {
         location={{
           pathname: props.location.pathname,
         }}
+        fixSiderbar={true}
         route={{ routes }}
         menuItemRender={(item, dom) => (
           <Link to={item.path}>{dom}</Link>
