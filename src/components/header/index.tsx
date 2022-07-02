@@ -3,9 +3,11 @@ import { Tag, Row, Col } from 'antd';
 
 import useWallet from '@/hooks/useWallet';
 import styles from './index.less';
+import useAvatarUrl from '@/hooks/useAvatarUrl';
 
 export default function Header() {
   const { account, chainId, connect, disconnect, isActive } = useWallet();
+  const avatarUrl = useAvatarUrl();
 
   const ActiveStatus = (
     <Tag color={'success'} onClick={() => disconnect()}>
@@ -25,6 +27,7 @@ export default function Header() {
     }
   }, [account]);
 
+  const Avatar = <img src={avatarUrl} className={styles.avatar} />;
   return (
     <Row gutter={20} justify="end">
       <Col span={12}>
@@ -33,7 +36,13 @@ export default function Header() {
       <Col span={3}>
         <span>链：{chainId || '--'}</span>
       </Col>
-      <Col span={6}>{Status}</Col>
+      <Col span={3}>{Status}</Col>
+      <Col
+        span={4}
+        style={{ display: 'flex', justifyContent: 'end', alignItems: 'center' }}
+      >
+        {isActive && Avatar}
+      </Col>
     </Row>
   );
 }

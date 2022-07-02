@@ -1,48 +1,20 @@
-import  { useEffect } from 'react';
+import { useEffect } from 'react';
 
-import ProLayout, {
-  PageContainer,
-} from '@ant-design/pro-layout';
-import { IRouteComponentProps } from 'umi';
+import ProLayout, { PageContainer } from '@ant-design/pro-layout';
+import { IRouteComponentProps, Link } from 'umi';
 import Header from '@/components/header';
 import useWallet from '@/hooks/useWallet';
-import { Link } from 'umi';
-import logo from '@/assets/img/logo.png'
-import { Route } from '@ant-design/pro-layout/lib/typings';
+import logo from '@/assets/img/logo.png';
+import makeAvatar from '@/utils/make-avatar';
+import menus from './menus';
 
 export default function Layout(props: IRouteComponentProps) {
   const { connect } = useWallet();
   useEffect(() => {
     connect();
+    makeAvatar('0xbf731f7e7B3F9ff3164Ba2113A143E7A8b481aDb');
   }, []);
-  const routes: Route[] = [
-    {
-      name: '合约',
-      path: '/contract',
-      routes: [
-        {
-          name: '代币授权',
-          path: '/contract/approve'
-        },
-        {
-          name: '发行ERC20代币',
-          path: '/contract/deploy-erc20'
-        },
-        {
-          name: '合约调用',
-          path: '/contract/call'
-        },
-      ]
-    },
-    {
-      name: 'Hex',
-      path: '/hex',
-    },
-    {
-      name: 'ERC20',
-      path: '/erc20',
-    },
-  ];
+
   return (
     <div
       style={{
@@ -57,10 +29,8 @@ export default function Layout(props: IRouteComponentProps) {
           pathname: props.location.pathname,
         }}
         fixSiderbar={true}
-        route={{ routes }}
-        menuItemRender={(item, dom) => (
-          <Link to={item.path}>{dom}</Link>
-        )}
+        route={{ menus }}
+        menuItemRender={(item, dom) => <Link to={item.path}>{dom}</Link>}
         headerContentRender={() => <Header></Header>}
       >
         <PageContainer>{props.children}</PageContainer>
