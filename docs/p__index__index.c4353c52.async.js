@@ -1,0 +1,1 @@
+(self.webpackChunk=self.webpackChunk||[]).push([[610],{38281:function(f,t,n){"use strict";n.r(t),n.d(t,{default:function(){return c}});var u=n(51615),s=n(85893);function c(){return(0,s.jsx)(u.l_,{to:"/contract"})}}}]);

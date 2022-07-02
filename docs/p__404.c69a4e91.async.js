@@ -1,0 +1,1 @@
+(self.webpackChunk=self.webpackChunk||[]).push([[571],{91562:function(c,u,n){"use strict";n.r(u),n.d(u,{default:function(){return s}});var t=n(85893);function s(){return(0,t.jsx)("h1",{children:"404"})}}}]);

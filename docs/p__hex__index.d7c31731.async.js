@@ -1,0 +1,1 @@
+(self.webpackChunk=self.webpackChunk||[]).push([[668],{65725:function(l,e,n){"use strict";n.r(e);var u=n(85893);function s(){return(0,u.jsx)("div",{children:(0,u.jsx)("h1",{children:"HexTools"})})}s.title="Hex",e.default=s}}]);
