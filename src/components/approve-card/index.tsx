@@ -8,10 +8,11 @@ export default function ApproveCard() {
   const [tokenAddress, setTokenAddress] = useState('');
   const [approveValue, setApproveValue] = useState('');
   const [beApprovedAddress, setBeApprovedAddress] = useState('');
-  const { isApproved, allowanceEther, loading: getAllowanceLoading } = useApproveStatus(
-    tokenAddress,
-    beApprovedAddress,
-  );
+  const {
+    isApproved,
+    allowanceEther,
+    loading: getAllowanceLoading,
+  } = useApproveStatus(tokenAddress, beApprovedAddress);
   const [approveLoading, setApproveLoading] = useState(false);
   const [cancelApproveLoading, setCancelApproveLoading] = useState(false);
   const { approve } = useApprove();
@@ -59,7 +60,11 @@ export default function ApproveCard() {
           placeholder="请输入被授权的地址"
           value={beApprovedAddress}
           onChange={(v) => setBeApprovedAddress(v.target.value)}
-          status={beApprovedAddress && isAddress(beApprovedAddress) ? undefined : 'error'}
+          status={
+            beApprovedAddress && isAddress(beApprovedAddress)
+              ? undefined
+              : 'error'
+          }
         ></Input>
         <Input
           placeholder="请输入授权的代币的地址"
@@ -70,7 +75,9 @@ export default function ApproveCard() {
       </Row>
       <Row>
         <p>
-          {getAllowanceLoading ? '查询中...' :  `授权额度：${allowanceEther} Ether`}
+          {getAllowanceLoading
+            ? '查询中...'
+            : `授权额度：${allowanceEther} Ether`}
         </p>
       </Row>
       <Row>
