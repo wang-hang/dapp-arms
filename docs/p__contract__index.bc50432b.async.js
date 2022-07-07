@@ -1,0 +1,1 @@
+(self.webpackChunk=self.webpackChunk||[]).push([[635],{50574:function(l,n,t){"use strict";t.r(n);var c=t(51615),e=t(85893);function u(){return(0,e.jsx)(c.l_,{to:"/contract/deploy-erc20"})}u.title="\u5408\u7EA6",n.default=u}}]);
