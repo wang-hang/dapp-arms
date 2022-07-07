@@ -1,13 +1,7 @@
-import ApproveCard from '@/components/approve-card';
-import DeployERC20Card from '@/components/deploy-erc20-card';
-import ERC20InfoCard from '@/components/erc20-info-card';
+import { Redirect } from 'umi';
+
 function Contract() {
-  return (
-    <div>
-      <ApproveCard />
-      <DeployERC20Card />
-    </div>
-  );
+  return <Redirect to={'/contract/deploy-erc20'}></Redirect>;
 }
 
 Contract.title = '合约';

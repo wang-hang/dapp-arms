@@ -29,7 +29,7 @@ export default function Layout(props: IRouteComponentProps) {
           pathname: props.location.pathname,
         }}
         fixSiderbar={true}
-        route={{ menus }}
+        route={{ routes: menus }}
         menuItemRender={(item, dom) => <Link to={item.path}>{dom}</Link>}
         headerContentRender={() => <Header></Header>}
       >
