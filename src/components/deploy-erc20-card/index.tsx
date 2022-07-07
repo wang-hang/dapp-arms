@@ -1,5 +1,13 @@
 import { Fragment, useRef, useState } from 'react';
-import { Alert, Card, Input, Descriptions, message, Button, FormInstance } from 'antd';
+import {
+  Alert,
+  Card,
+  Input,
+  Descriptions,
+  message,
+  Button,
+  FormInstance,
+} from 'antd';
 import ProForm, { ProFormText, ProFormDigit } from '@ant-design/pro-form';
 import { ProDescriptions } from '@ant-design/pro-components';
 
@@ -9,12 +17,12 @@ import useWallet from '@/hooks/useWallet';
 export default function DeployERC20() {
   const [contractAddress, setContractAddress] = useState('');
   const { provider, addTokenToWallet } = useWallet();
-  const formRef = useRef<FormInstance>()
+  const formRef = useRef<FormInstance>();
 
-  async function submit(values: { name: string }) {
+  async function submit(values: { name: string; decimals: number }) {
     console.log(values);
-    const { name } = values;
-    return deployERC20Contract(name, provider.getSigner())
+    const { name, decimals } = values;
+    return deployERC20Contract(name, decimals, provider.getSigner())
       .then((address) => {
         message.success('部署成功');
         setContractAddress(address);
@@ -25,17 +33,17 @@ export default function DeployERC20() {
       });
   }
 
-  function addToken(){
-    const name = formRef.current?.getFieldValue('name')
-    console.log({contractAddress, name})
-    if(!contractAddress || !name) {
-      alert('请先部署代币')
+  function addToken() {
+    const name = formRef.current?.getFieldValue('name');
+    console.log({ contractAddress, name });
+    if (!contractAddress || !name) {
+      alert('请先部署代币');
     }
     addTokenToWallet({
       address: contractAddress,
       symbol: name,
       decimals: 18,
-    })
+    });
   }
 
   return (
@@ -43,19 +51,29 @@ export default function DeployERC20() {
       <Alert message="部署成功后会账户会有 1000000 个代币" />
       <ProForm onFinish={submit} formRef={formRef}>
         <ProFormText label="代币名称" name={'name'} />
+        <ProFormDigit label="代币精度" name={'decimals'} initialValue={18} />
       </ProForm>
       <ProDescriptions title="部署结果">
         <ProDescriptions.Item label="部署后的合约地址：" copyable={true}>
           {contractAddress}
         </ProDescriptions.Item>
       </ProDescriptions>
-      {
-        contractAddress &&
+      {contractAddress && (
         <Fragment>
-          <Button key="1" onClick={addToken} type="primary"> 添加代币到钱包</Button>
-          <Button key="2" type='link' href={`https://testnet.cubescan.network/en-us/token/${contractAddress}`} target="_blank">点击跳转到区块浏览器</Button>
+          <Button key="1" onClick={addToken} type="primary">
+            {' '}
+            添加代币到钱包
+          </Button>
+          <Button
+            key="2"
+            type="link"
+            href={`https://testnet.cubescan.network/en-us/token/${contractAddress}`}
+            target="_blank"
+          >
+            点击跳转到区块浏览器
+          </Button>
         </Fragment>
-      }
+      )}
     </Card>
   );
 }
